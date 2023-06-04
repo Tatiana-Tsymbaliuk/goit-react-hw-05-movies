@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 import {fetchForDetails} from '../api/api';
 import InfoFilm from "components/InfoFilm/InfoFilm";
 
@@ -28,6 +28,11 @@ const [error, setError] = useState(null);
         return(<>
                 {/* <div>MoviesDetiails:{moviesId}</div> */}
                 <InfoFilm movie={movie}/>
+                <ul>
+                        <li><Link to="cast">Cast</Link></li>
+                        <li><Link to="reviews">Reviews</Link></li>
+                </ul>
+                <Outlet/>
                 </>
         )
 }
