@@ -8,7 +8,7 @@ const InfoFilm = ({movie}) =>{
                                alt={title}/>
                                <div>{overview}</div>
                                <div>{vote_average}</div>
-                               <div>{genre_ids}</div>
+                               {/* <div>{genre_ids}</div> */}
                                 </li>
                                
                                 ))}     
