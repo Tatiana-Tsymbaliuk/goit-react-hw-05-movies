@@ -1,18 +1,25 @@
 const InfoFilm = ({movie}) =>{
-        return( <ul>
-                {movie.map(({id, title, poster_path, overview, vote_average, genre_ids})=> (
-                             <li key ={id}>
+        const {
+                
+                title,
+                vote_average,
+                poster_path,
+                overview,
+                genres,
+              } = movie;
+        return( <>
+                             
                                <p>{title}</p>
                                <img 
                                src={poster_path}
                                alt={title}/>
                                <div>{overview}</div>
                                <div>{vote_average}</div>
-                               {/* <div>{genre_ids}</div> */}
-                                </li>
+                               <div>{genres}</div>
+                                
                                
-                                ))}     
-                        </ul>
+                                    
+                        </>
                 )
 }
 export default InfoFilm;

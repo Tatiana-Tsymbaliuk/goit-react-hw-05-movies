@@ -6,9 +6,10 @@ import InfoFilm from "components/InfoFilm/InfoFilm";
 const MoviesDetiails = () =>{
 const {moviesId} = useParams();
         console.log(moviesId);
-const [movie, setMovie]=useState([]);
+const [movie, setMovie]=useState('');
 //eslint-disable-next-line
 const [error, setError] = useState(null);
+
         useEffect(()=>{      
                 const getMovie = async (moviesId) => {
                         try {
@@ -21,7 +22,8 @@ const [error, setError] = useState(null);
                         }
                       };
                   
-                      getMovie();
+                      getMovie(moviesId);
+                      //eslint-disable-next-line
         }, [])
         return(<>
                 {/* <div>MoviesDetiails:{moviesId}</div> */}
