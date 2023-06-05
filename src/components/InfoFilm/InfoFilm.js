@@ -19,7 +19,7 @@ const InfoFilm = ({movie}) =>{
         alt={title}/></div>
         <div><p>Overview:</p>{overview ? <span>{overview}</span> : <span>N/A</span>}</div>
 
-        <div><p>User Score:</p>{vote_average*10}%</div>
+        <div><p>User Score:</p>{Math.round(vote_average*10)}%</div>
         <div><p>Generes:</p></div>                      
         {genres ? (
           <ul>
