@@ -1,28 +1,32 @@
-import {useState} from 'react';
+// import { useState } from 'react';
 import {FaSistrix} from 'react-icons/fa';
+import { useState } from 'react';
 
-export default function Searchbar({onSubmit}){
-const [nameSearch, setNameSearch] = useState('');
-const handleNameChange = event=>{
-        const {value } = event.currentTarget;
+ const Searchbar=({ onSearch })=>{
+ const [query, setQuery] = useState('');
+  
+// const visibleMovie = films.filter(film=>film.includes(search));
 
-        setNameSearch(value);
-}
+const handleSearchInput = e => {
+  const { value } = e.currentTarget;
+
+  setQuery(value);
+};      
+
 const handleSubmit = event=>{
-        event.preventDefault();
-        if(nameSearch.trim()=== ''){
-             alert('Введите свой поиск');
-                return;  
-        }  
-         
-             onSubmit(nameSearch);
-             setNameSearch('');
-}       
-
+  event.preventDefault();
+  if(query.trim()=== ''){
+       alert('Введите свой поиск');
+          return;  
+  }  }
+   
+       onSearch(query);
+       setQuery('');
+ 
 
         return(
                 <div>
-                <form className="SearchForm " onSubmit = {handleSubmit}>
+                <form className="SearchForm" onSubmit={ handleSubmit }>
                   <button type="submit" className="SearchForm-button">
                   <span className="SearchForm-button-label"><FaSistrix className="Icon"/></span>
                   </button>
@@ -30,9 +34,9 @@ const handleSubmit = event=>{
                   <input
                     className="SearchForm-input"
                     type="text"
-                    name="nameSearch"
-                    value={nameSearch}
-                    onChange={handleNameChange}
+                    name="query"
+                    value={query}
+                    onChange={handleSearchInput}
                     autoComplete="off"
                     autoFocus
                     placeholder="Search movie"
@@ -41,3 +45,4 @@ const handleSubmit = event=>{
               </div>      
         )
 }
+export default Searchbar;
