@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import {fetchForHome} from '../api/api';
 import MoviesList from '../components/MoviesList/MoviesList';
+import { useLocation } from "react-router-dom";
 
 
 const Home = () => {
   const [films, setFilms] = useState([]);
   //eslint-disable-next-line
   const [error, setError] = useState(null);
-
+  const location =  useLocation();
   useEffect(() => {
     const getFilms = async () => {
       try {
@@ -21,10 +22,10 @@ const Home = () => {
 
     getFilms();
   }, []);
-
+console.log(location);
   return (
     <div>
-      <MoviesList films={films} />
+      <MoviesList films={films} state ={{from: location}}/>
       
     </div>
   );

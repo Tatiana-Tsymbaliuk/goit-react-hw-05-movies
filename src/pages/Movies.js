@@ -1,38 +1,33 @@
-// import Searchbar from "components/Searchbar/Searchbar";
-// import SearchMovietList from "components/SearchMovietList/SearchMovietList"
-import { useSearchParams } from 'react-router-dom';
+import Searchbar from "components/Searchbar/Searchbar";
+import SearchMovietList from "components/SearchMovietList/SearchMovietList"
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchForSearch } from 'api/api';
-import { Link } from "react-router-dom";
 
 const Movies = () =>{
         const [films, setFilms] = useState([]);
        const [query, setQuery] = useState('');
         //eslint-disable-next-line
-        const [error, setError] = useState(null);
-       
+        const [error, setError] = useState(null);       
         const [searchParams, setSearchParams] = useSearchParams();
         const search = searchParams.get("search") ?? "";
-        
+        const location = useLocation()
         useEffect(()=>{
-                const getFilms = async ({search}) => {
+          if (query !== '' && query) {
+                const getFilms = async search => {
                 try {
                 const data = await fetchForSearch(search);
-                console.log(data);
+                console.log(data.results);
                 setFilms(data.results);
                 } catch (error) {
                 console.log('Something went wrong with fetching films:', error);
                 setError(error);
                  }
                 }      
-                getFilms(search);
+                getFilms(query);}
               //eslint-disable-next-line
-                       }, [])
+                       }, [query])
       
-        // const visibleMovie = films.filter((film) =>
-        //   film.includes(search.toLowerCase())
-        // );
-        // console.log(visibleMovie );
       
         const updateQueryString = (event) => {
           const pageQuery = event.target.value;
@@ -45,35 +40,20 @@ const Movies = () =>{
           }
           
         };
-        const onChangeQuery = (query) => {
-                setFilms([]);
+        const onChangeQuery = async event => {
+          event.preventDefault();
+                
                 setQuery(query);
-                // setPageCurrent(1);
-                setError(null);}
-
-
-
+                setError(null);
+               
+              }
+             
+console.log(location);
 
 return(<>
-        <div>Movies</div>
-        <form onSubmit={onChangeQuery}>
-        <input
-                    className="SearchForm-input"
-                    type="text"
-                    name="query"
-                    value={search}
-                    onChange={updateQueryString}
-                    autoComplete="off"
-                    autoFocus
-                    placeholder="Search movie"
-                  /></form>
-                {/* <Searchbar onChange={updateQueryString} onSearch={onChangeQuery} /> */}
-                {/* <SearchMovietList movie={visibleMovie} /> */}
-                <div><ul>
-                      {films.map(({id, title})=> (
-                        <Link to={(`/movies/${id}`)} key ={id}><li >{title}</li></Link>
-                      ))}     
-                            </ul></div>   
+                <Searchbar  value = {search} onChange={updateQueryString} onSearch={onChangeQuery} />
+                <SearchMovietList movie={films} state ={{from: location}}/>
+                
   </>
         
        )

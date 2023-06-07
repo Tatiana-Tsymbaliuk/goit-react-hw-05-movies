@@ -32,9 +32,7 @@ const InfoFilm = ({movie}) =>{
         ) : (
           <span>N/A</span>
         )}    
-                               
-                                    
-                        </article>
+         </article>
                 )
 }
 export default InfoFilm;
