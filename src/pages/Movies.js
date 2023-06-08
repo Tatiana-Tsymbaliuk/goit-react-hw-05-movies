@@ -37,6 +37,7 @@ const Movies = () =>{
             return setSearchParams({});
           }else{
             setSearchParams({search: pageQuery});
+            
           }
           
         };
@@ -45,6 +46,7 @@ const Movies = () =>{
                 
                 setQuery(query);
                 setError(null);
+                event.target.elements.query.value = "";
                
               }
              

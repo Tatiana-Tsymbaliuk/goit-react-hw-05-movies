@@ -4,7 +4,7 @@ const SearchMovietList =({movie, state})=>{
                 {/* <Link to={state?.from ?? "/"}>Go back</Link> */}
                 <ul>
                 {movie.map(({id, title})=> (
-                  <Link to={(`/movies/${id}`)?? state?.from } state={state} key ={id}><li >{title}</li></Link>
+                  <Link to={(`/movies/${id}`)?? state.state?.from } state={state} key ={id}><li >{title}</li></Link>
                 ))}     
                       </ul></div> 
 

@@ -1,14 +1,5 @@
-
-
-//import { useState } from 'react';
-
- const Searchbar=({ onSearch, onChange, value })=>{
- //const [query, setQuery] = useState('');
-
-
- 
-
-        return(
+const Searchbar=({ onSearch, onChange, value })=>{
+return(
                 <div>
                 <form onSubmit={onSearch}>
                  <input
