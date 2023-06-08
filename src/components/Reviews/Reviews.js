@@ -25,7 +25,6 @@ useEffect(()=>{
 },[])
 
 return( <>
-        <div>Reviews: {moviesId}</div>
         <div><ReviewsInfo reviews ={reviews}/></div>
      </>) 
 }

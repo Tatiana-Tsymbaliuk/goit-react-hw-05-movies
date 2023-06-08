@@ -25,8 +25,7 @@ const Home = () => {
 console.log(location);
   return (
     <div>
-      <MoviesList films={films} state ={{from: location}}/>
-      
+      <MoviesList films={films} state ={{from: location}}/> 
     </div>
   );
 };

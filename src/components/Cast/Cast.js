@@ -23,7 +23,7 @@ useEffect(()=>{
               //eslint-disable-next-line
 },[])
 return(<>
-        <div>Cast: {moviesId}</div>
+        
         <div><CastInfo casts={casts}/></div>
       </>)
 }
